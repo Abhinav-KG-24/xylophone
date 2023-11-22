@@ -5,9 +5,19 @@ void main() {
   runApp(const MyApp());
 }
 
-void playSound(String note) {
+void playSound(int note) {
   final player = AudioPlayer();
-  player.play(AssetSource(note));
+  player.play(AssetSource('note$note.wav'));
+}
+
+Expanded buildWidget(int noteNum, colo) {
+  return Expanded(
+      child: TextButton(
+          style: TextButton.styleFrom(backgroundColor: colo),
+          onPressed: () {
+            playSound(noteNum);
+          },
+          child: Text('')));
 }
 
 class MyApp extends StatelessWidget {
@@ -23,63 +33,13 @@ class MyApp extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Expanded(
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                                backgroundColor: Colors.red),
-                            onPressed: () {
-                              playSound('note1.wav');
-                            },
-                            child: Text(''))),
-                    Expanded(
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                                backgroundColor: Colors.orange),
-                            onPressed: () {
-                              playSound('note2.wav');
-                            },
-                            child: Text(''))),
-                    Expanded(
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                                backgroundColor: Colors.yellow),
-                            onPressed: () {
-                              playSound('note3.wav');
-                            },
-                            child: Text(''))),
-                    Expanded(
-                        child: TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: Colors.lightGreen[400]),
-                      onPressed: () {
-                        playSound('note4.wav');
-                      },
-                      child: Text(''),
-                    )),
-                    Expanded(
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                                backgroundColor: Colors.green),
-                            onPressed: () {
-                              playSound('note5.wav');
-                            },
-                            child: Text(''))),
-                    Expanded(
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                                backgroundColor: Colors.blue),
-                            onPressed: () {
-                              playSound('note6.wav');
-                            },
-                            child: Text(''))),
-                    Expanded(
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                                backgroundColor: Colors.purple),
-                            onPressed: () {
-                              playSound('note7.wav');
-                            },
-                            child: Text('')))
+                    buildWidget(1, Colors.red),
+                    buildWidget(2, Colors.orange),
+                    buildWidget(3, Colors.yellow),
+                    buildWidget(4, Colors.green),
+                    buildWidget(5, Colors.green[300]),
+                    buildWidget(6, Colors.blue),
+                    buildWidget(7, Colors.purple)
                   ],
                 ),
               ),
